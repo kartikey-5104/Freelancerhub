@@ -1,0 +1,21 @@
+<h2>Dashboard</h2>
+
+{% if projects %}
+  <h3>Your Projects</h3>
+  <ul>
+    {% for project in projects %}
+      <li>
+        {{ project.title }} - ₹{{ project.budget }}
+        <a href="{% url 'edit_project' project.pk %}">Edit</a>
+        <a href="{% url 'delete_project' project.pk %}">Delete</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% elif applications %}
+  <h3>Your Applications</h3>
+  <ul>
+    {% for app in applications %}
+      <li>{{ app.project.title }} - {{ app.status }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
